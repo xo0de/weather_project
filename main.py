@@ -21,7 +21,7 @@ def get_weather():
 
     if data["cod"] == 200:
         temperature = data["main"]["temp"]
-        weather_description = data["weather"][0]["description"]
+        weather_description = data["weather"][0]["description"].title()
         return render_template('weather_info.html', city=city_name, temperature=temperature, weather_description=weather_description)
     else:
         return render_template('incorrect_city.html')
