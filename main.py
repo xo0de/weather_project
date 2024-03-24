@@ -1,7 +1,13 @@
 from flask import Flask, render_template, request
-import requests
+from datetime import datetime
+from configmanager import ConfigManager
+from weatherservice import WeatherService
 
 app = Flask(__name__)
+config_manager = ConfigManager()
+api_key = config_manager.get_value('API_KEY')
+base_url = config_manager.get_value('BASE_URL')
+weather_service = WeatherService(api_key, base_url)
 
 
 @app.route('/')
@@ -12,20 +18,18 @@ def index():
 @app.route('/get_weather', methods=['POST'])
 def get_weather():
     city_name = request.form['city']
-    api_key = "412725df27378914a217850ce5b95f90"
-    base_url = "https://api.openweathermap.org/data/2.5/weather?"
-    complete_url = f"{base_url}q={city_name}&appid={api_key}&units=metric"
-
-    response = requests.get(complete_url)
-    data = response.json()
+    now = datetime.now()
+    formatted_date_time = now.strftime("%A, %d %B %Y, %H:%M:%S")
+    data = weather_service.get_weather(city_name)
 
     if data["cod"] == 200:
-        temperature = data["main"]["temp"]
+        temperature = round(data["main"]["temp"])
         weather_description = data["weather"][0]["description"].title()
-        return render_template('weather_info.html', city=city_name, temperature=temperature, weather_description=weather_description)
+        return render_template('weather_info.html', city=city_name, temperature=temperature,
+                               weather_description=weather_description, date_time=formatted_date_time)
     else:
         return render_template('incorrect_city.html')
 
 
 if __name__ == '__main__':
-	app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=5000, debug=True)

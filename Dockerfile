@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY . /app
 
-RUN pip install Flask && pip install requests
+RUN pip install Flask && pip install requests && pip install dotenv
 
 EXPOSE 5000
 
