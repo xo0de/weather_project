@@ -16,7 +16,7 @@ class WeatherService:
         self.api_key = api_key
         self.base_url = base_url
 
-    def get_weather(self, city_name: str):
+    def get_weather(self, city_name: str) -> dict:
         """
         Fetches weather information for a given city.
 

@@ -42,3 +42,6 @@ To run the application in a Docker container, follow these steps:
 
 Feel free to contribute to the project by submitting a pull request or opening an issue.
 
+## Versions 
+
+Python 3.10
