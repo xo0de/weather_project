@@ -2,7 +2,7 @@ from dotenv import load_dotenv
 import os
 
 
-class ConfigManager:
+class EnvironmentManager:
     """
     Loads and retrieves environment variables from a .env file.
     """
@@ -14,7 +14,7 @@ class ConfigManager:
         load_dotenv()
 
     @staticmethod
-    def get_value(key: str) -> str:
+    def get_env_value(key: str) -> str:
         """
         Returns the value of an environment variable by its key.
 
