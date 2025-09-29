@@ -1,6 +1,6 @@
 import os
 import unittest
-from configmanager import ConfigManager
+from src.configmanager import ConfigManager
 from weatherservice import WeatherService
 
 
