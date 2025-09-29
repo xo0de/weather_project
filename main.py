@@ -1,17 +1,17 @@
 from flask import Flask, render_template, request
 from datetime import datetime
-from src.configmanager import ConfigManager
-from src.weatherservice import WeatherService
+from src.environment_manager import EnvironmentManager
+from src.weather_api import WeatherAPI
 
 app = Flask(__name__)
-config_manager = ConfigManager()
-api_key = config_manager.get_value('API_KEY')
-base_url = config_manager.get_value('BASE_URL')
-weather_service = WeatherService(api_key, base_url)
+env_manager = EnvironmentManager()
+api_key = env_manager.get_env_value('API_KEY')
+base_url = env_manager.get_env_value('BASE_URL')
+weather_api = WeatherAPI(api_key, base_url)
 
 
 @app.route('/')
-def index():
+def main_page():
     return render_template('index.html')
 
 
@@ -20,7 +20,7 @@ def get_weather():
     city_name = request.form['city']
     now = datetime.now()
     formatted_date_time = now.strftime("%A, %d %B %Y, %H:%M:%S")
-    data = weather_service.get_weather(city_name)
+    data = weather_api.get_weather(city_name)
 
     if data["cod"] == 200:
         temperature = round(data["main"]["temp"])

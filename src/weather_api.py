@@ -1,7 +1,7 @@
 import requests
 
 
-class WeatherService:
+class WeatherAPI:
     """
     Handles fetching weather information using an external API.
     """
