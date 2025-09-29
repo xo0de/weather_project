@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 from datetime import datetime
-from configmanager import ConfigManager
-from weatherservice import WeatherService
+from src.configmanager import ConfigManager
+from src.weatherservice import WeatherService
 
 app = Flask(__name__)
 config_manager = ConfigManager()
