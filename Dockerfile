@@ -4,7 +4,7 @@ WORKDIR /app
 
 COPY . /app
 
-RUN pip install Flask && pip install requests && pip install python-dotenv
+RUN pip install --upgrade pip && pip install -r requirements.txt
 
 EXPOSE 5000
 
