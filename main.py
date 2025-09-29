@@ -11,7 +11,7 @@ weather_api = WeatherAPI(api_key, base_url)
 
 
 @app.route('/')
-def index():
+def main_page():
     return render_template('index.html')
 
 
