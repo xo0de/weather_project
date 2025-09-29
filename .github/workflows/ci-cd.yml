@@ -43,4 +43,4 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Push Docker image
-        run: docker push weather-app
+        run: docker push xo0de/weather-app:latest
