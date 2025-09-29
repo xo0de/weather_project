@@ -34,7 +34,7 @@ jobs:
           pytest tests/
 
       - name: Build Docker image
-        run: docker build -t weather-app:latest .
+        run: docker build -t xo0de/weather-app:latest .
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
