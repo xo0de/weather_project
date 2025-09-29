@@ -44,4 +44,4 @@ Feel free to contribute to the project by submitting a pull request or opening a
 
 ## Versions 
 
-Python 3.10
+Python 3.12
