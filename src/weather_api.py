@@ -1,4 +1,12 @@
 import requests
+from enum import IntEnum
+
+
+class ResponseStatus(IntEnum):
+    OK = 200
+    NOT_FOUND = 404
+    UNAUTHORIZED = 401
+    SERVER_ERROR = 500
 
 
 class WeatherAPI:

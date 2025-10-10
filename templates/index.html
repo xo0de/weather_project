@@ -1,18 +1,25 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Weather</title>
-</head>
-<body>
-    <h1>Current weather Online</h1>
-    <h2>Enter the name of the city</h2>
-    <form action="/get_weather" method="post">
-        <input type="text" name="city" placeholder="City name">
-        <button type="submit">Send request</button>
+{% extends "base.html" %}
+
+{% block content %}
+<div class="text-center">
+    <h1 class="display-5 fw-bold mb-3">Weather App</h1>
+
+    <img src="{{ url_for('static', filename='sunny.jpeg') }}"
+         alt="Weather illustration"
+         class="img-fluid mb-4"
+         style="max-width: 250px;">
+
+    <h3 class="h6 text-muted mb-4">Enter the name of the city</h3>
+
+    <!-- Weather request form -->
+    <form action="/get_weather" method="post" class="d-flex justify-content-center mb-4">
+        <!-- City input field -->
+        <input type="text" name="city" class="form-control me-2" placeholder="City name" style="max-width: 300px;">
+        <!-- Submit button -->
+        <button type="submit" class="btn btn-primary">Get Weather</button>
     </form>
-    <div id="weatherInfo">
 
-    </div>
-
-</body>
-</html>
+    <!-- Placeholder for weather information (can be used via JS or a separate template) -->
+    <div id="weatherInfo"></div>
+</div>
+{% endblock %}
