@@ -3,9 +3,16 @@
 {% block content %}
 <div class="d-flex justify-content-center align-items-center" style="min-height: 80vh;">
     <div class="text-center">
-        <h1 class="display-2 fw-bold mb-3">{{ city }}</h1>
-        <h2 class="display-4 mb-2">{{ temperature }}°C</h2>
-        <p class="lead mb-3 text-capitalize">{{ weather_description }}</p>
+        <h1 class="display-2 fw-bold mb-3">{{ data.name }}</h1>
+        <p class="lead mb-3 text-capitalize"> <img src="https://openweathermap.org/img/wn/{{ data.weather[0].icon }}@2x.png"
+                                           alt="Weather icon" width="50" height="50">{{ data.weather[0].description }}</p>
+        <h2 class="display-3 mb-1">{{ round(data.main.temp) }}°C</h2>
+        <p class="fs-4 mb-1">Feels Like: {{ round(data.main.feels_like) }}°C</p>
+        <p class="fs-6 mb-1">H:{{ round(data.main.temp_max) }}&#9650 L:{{ round(data.main.temp_min) }}&#9660</p>
+
+        <p class="fs-5 mb-1">Humidity: {{ data.main.humidity }}%</p>
+        <p class="fs-5 mb-1">Wind Speed: {{ round(data.wind.speed, 1) }} m/s</p>
+
         <h6 class="text-muted mb-4">{{ date_time }}</h6>
         <a href="/" class="btn btn-primary btn-lg">Check another city</a>
     </div>
