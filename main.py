@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 from datetime import datetime
 from src.environment_manager import EnvironmentManager
-from src.weather_api import WeatherAPI
+from src.weather_api import WeatherAPI, ResponseStatus
 
 app = Flask(__name__)
 env_manager = EnvironmentManager()
@@ -24,7 +24,7 @@ def get_weather():
     city_name = request.form['city']
     date_time_now = datetime.now().strftime("%A, %d %B %Y, %H:%M:%S")
     data = weather_api.get_weather(city_name)
-    if data["cod"] == 200:
+    if data["cod"] == ResponseStatus.OK:
         return render_template('weather_info.html', data=data, date_time_now=date_time_now)
     else:
         return render_template('incorrect_city.html')
